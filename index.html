@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app="matchpoint">
+<head>
+    <meta charset="utf-8"/>
+    <title>Матчпоинт</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/matchpoint.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body ng-controller="MatchPointCtrl">
+<div class="start-menu" ng-show="stage=='start' || stage=='select'" >
+    <h1>Матчпоинт</h1>
+
+    <div id="options" ng-show="stage=='start'">
+        <div>
+            <button ng-click="start({players: 1})">1 игрок</button>
+        </div>
+        <div>
+            <button ng-click="start({players: 2})">2 игрока</button>
+        </div>
+    </div>
+    <form id="select-names" ng-show="stage=='select'">
+        <input ng-model="player1.name"></input>
+        <input ng-model="player2.name" ng-show="options.players == 2"></input>
+        <input ng-model="player2.name" ng-show="options.players == 1"></input>
+        <br>
+        <button type="submit" ng-click="startGame()">Начать игру</button>
+    </form>
+    
+    <img src="img/ball.jpg" />
+</div>
+        <table id="game" ng-show="stage=='game' || stage=='turn' || stage=='gameOver'" >
+            <tr id="header-raw"><th colspan="3" class="names left-name">{{player1.name}}</th> <th class="score" colspan="2">{{player1.goals}} : {{player2.goals}}</th> <th align="right" colspan="3"  class="names right-name">{{player2.name}}</th> </tr>
+            <tr id="center-raw">
+<td><img ng-show="ballPosition == -3" class="ball" src="img/ball.gif" /> </td>
+<td><img ng-show="ballPosition == -2" class="ball" src="img/ball.gif" /> </td>
+<td><img ng-show="ballPosition == -1" class="ball" src="img/ball.gif" /> </td>
+<td colspan="2" align="center"> <img ng-show="ballPosition == 0" class="ball" src="img/ball.gif" /> </td>
+<td><img ng-show="ballPosition == 1" class="ball" src="img/ball.gif" /> </td>
+<td><img ng-show="ballPosition == 2" class="ball" src="img/ball.gif" /> </td>
+<td align="right"a><img ng-show="ballPosition == 3" class="ball" src="img/ball.gif" /></td>
+            </tr>
+<tr id="footerRaw" valign="bottom"><td colspan="8" align="center">
+  <button id="startTurn" ng-click="startTurn()" ng-show="stage!='turn' && stage!='gameOver'">{{currentPlayer.name + ' ходит, ' + anotherPlayer.name + ' не смотрит'}} </button>
+  <form ng-show="stage=='turn'">
+    <h3>Ходит {{currentPlayer.name}}. Осталось {{currentPlayer.points}}. Введите своё число</h3>
+    <input id="turnValue" ng-model='turnValue'></input>
+    <button type="submit" ng-click='turnMade()'>OK</button>
+  </form>
+  <div ng-show="stage=='gameOver'">
+    <h2 ng-if="winner!=null">{{winner.name}} выиграл(a)!</h2>
+	   <h2 ng-if="winner==null">Ничья!</h2>
+    <button ng-click="stage='start'">Сыграть еще раз!</button>
+  </div>
+</td></tr></table>
+    
+</body>
+</html>

@@ -1,0 +1,75 @@
+* {
+    padding : 100;
+    margin : 100;
+}
+
+body {
+    background : green;
+    color : black;
+}
+
+.start-menu {
+	   text-align : center;
+	   vertical-align : center;
+}
+
+h1 {
+	  font-size : 70px;
+}
+	
+button, input, h2, #header-raw {
+		  font-size : 60px;
+		  width : 400px;
+		  text-align : center;
+}
+
+.names {
+	    width : 384px;
+	    max-width : 384px;
+}
+
+.left-name {
+	    text-align : left;
+}
+
+.right-name {
+	   text-align : right;
+}
+.score {
+	    width : 256px;
+	    min-width : 256px;
+	    text-align : center;
+}
+
+h3 {
+	   font-size : 45px;
+}
+
+#turnValue {
+	   width : 100px;
+}
+
+#game {
+		  width : 1024px;
+		  height : 768px;
+		  background-image : url(../img/field.png);
+}
+
+td {
+	   width : 126px;
+	   min-width : 126px;
+	   max-width : 254px;
+	   
+}
+	
+.ball{
+		  width : 140px;
+}
+
+#header-raw, #footer-raw {
+	   height : 250px;
+}
+
+th {
+	   vertical-align : top;
+}
